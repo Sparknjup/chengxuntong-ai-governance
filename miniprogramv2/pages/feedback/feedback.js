@@ -1,0 +1,1 @@
+Page({ data: { selected: '功能建议', types: ['功能建议', '界面体验', '问题投诉', '其他'] }, choose(e) { this.setData({ selected: e.currentTarget.dataset.value }) }, submit() { wx.showModal({ title: '反馈已记录', content: '感谢你的建议，这是静态演示页面。', showCancel: false }) } })

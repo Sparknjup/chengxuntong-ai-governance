@@ -1,0 +1,28 @@
+<view class="page home-page">
+  <view class="hero">
+    <view class="topbar">
+      <view class="brand"><text class="brand-mark">C</text><text>城讯通</text></view>
+      <view class="notice">⌁</view>
+    </view>
+    <view class="location"><text>⌖</text><text>{{location}}</text><text class="chevron">⌄</text></view>
+    <view class="hero-title">美好城市，<text>从你的发现开始</text></view>
+    <view class="hero-copy">随手记录身边问题，让每一份关心都被看见。</view>
+    <view class="report-cta" bindtap="goReport"><view><text class="cta-eyebrow">CITY REPORT</text><text class="cta-title">我要上报问题</text></view><text class="cta-arrow">→</text></view>
+    <view class="hero-orb orb-one"></view><view class="hero-orb orb-two"></view>
+  </view>
+
+  <view class="quick-card card">
+    <view class="quick-head"><view><text class="section-title">快捷上报</text><text class="section-subtitle">选择你遇到的问题类型</text></view><text class="all-link">全部 ›</text></view>
+    <view class="category-grid">
+      <view wx:for="{{categories}}" wx:key="name" class="category" bindtap="goReport"><view class="category-icon {{item.color}}">{{item.icon}}</view><text>{{item.name}}</text></view>
+    </view>
+  </view>
+
+  <view class="section-row"><view><text class="section-title">城市正在变好</text><text class="section-subtitle">每一次参与，都值得被记录</text></view><text class="all-link">查看动态 ›</text></view>
+  <view class="impact-card">
+    <view class="impact-number">2,618<text>件</text></view><view class="impact-copy"><text>本月已处理问题</text><text>比上月提升 12.8% ↑</text></view><view class="impact-line"><view></view></view>
+  </view>
+  <view class="news-card card"><view class="news-thumb">🌿</view><view class="news-body"><text class="tag tag-green">进度播报</text><text class="news-title">湖滨步行街照明焕新完成</text><text class="news-meta">今天 10:24 · 城市管理局</text></view><text class="news-arrow">›</text></view>
+</view>
+
+<view class="bottom-nav"><navigator class="nav-item active" url="/pages/home/home" open-type="reLaunch"><text class="nav-icon">⌂</text><text>首页</text></navigator><navigator class="nav-item" url="/pages/orders/orders"><text class="nav-icon">▤</text><text>进度</text></navigator><navigator class="nav-item nav-report" url="/pages/report/report"><text class="nav-icon">＋</text><text>上报</text></navigator><navigator class="nav-item" url="/pages/profile/profile"><text class="nav-icon">◉</text><text>我的</text></navigator></view>

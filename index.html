@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>城讯通 · 城市共治智能中枢</title>
+  <style>
+    :root{--ink:#17333b;--muted:#6f858a;--paper:#f3f6f2;--card:#fff;--line:#dce6e1;--teal:#0d766e;--teal2:#e5f3ee;--navy:#173b54;--amber:#e5a836;--red:#c65348;--green:#4a8b63;--shadow:0 14px 34px rgba(27,67,61,.08);--radius:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--paper);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+    .app{min-height:100vh}.global-bar{height:68px;background:#12333a;color:#fff;display:flex;align-items:center;padding:0 26px;position:sticky;top:0;z-index:30;box-shadow:0 7px 24px rgba(15,43,47,.16)}
+    .brand{display:flex;align-items:center;gap:12px;min-width:242px}.brand-mark{width:39px;height:39px;border-radius:12px;background:linear-gradient(145deg,#64c6ac,#d7e98d);color:#12333a;display:grid;place-items:center;font-weight:900;font-size:20px}.brand strong{display:block;font-size:16px;letter-spacing:1px}.brand small{display:block;color:#a9c5c4;font-size:10px;margin-top:3px;letter-spacing:1.3px}
+    .system-name{font-size:13px;color:#b7cdca;border-left:1px solid #416066;padding-left:18px}.role-switch{margin-left:auto;display:flex;padding:4px;border:1px solid #49666a;background:#0d2c32;border-radius:11px}.role-switch button{border:0;background:transparent;color:#a9c3c1;padding:8px 15px;border-radius:8px;font-size:12px}.role-switch button.active{color:#14383b;background:#d6e98d;font-weight:700}.clock{margin-left:18px;color:#abc2c0;font-size:11px;font-variant-numeric:tabular-nums}
+    .shell{display:grid;grid-template-columns:242px minmax(0,1fr)}.side{height:calc(100vh - 68px);position:sticky;top:68px;padding:24px 15px;background:#fbfcfa;border-right:1px solid var(--line);display:flex;flex-direction:column}.side-context{padding:5px 11px 20px}.side-context small{color:var(--muted);font-size:10px;letter-spacing:1px}.side-context b{display:block;margin-top:7px;font-size:14px}.side nav{display:grid;gap:5px}.nav-btn{border:0;background:transparent;color:#61777c;border-radius:11px;text-align:left;padding:12px 13px;display:flex;align-items:center;gap:10px;font-size:13px}.nav-btn span{width:23px;text-align:center;color:#74948e}.nav-btn:hover,.nav-btn.active{background:var(--teal2);color:var(--teal);font-weight:700}.nav-btn.active span{color:var(--teal)}.side-foot{margin-top:auto;border-top:1px solid var(--line);padding:17px 10px 2px;display:flex;gap:10px;align-items:center}.avatar{width:36px;height:36px;border-radius:12px;background:#dbeae4;color:var(--teal);display:grid;place-items:center;font-weight:800}.side-foot b{font-size:12px}.side-foot small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+    .content{padding:27px 30px 50px;max-width:1600px;width:100%;margin:auto}.page-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px}.kicker{color:var(--teal);font-size:10px;font-weight:800;letter-spacing:1.5px}.page-head h1{font-size:27px;margin:7px 0 7px;letter-spacing:-.8px}.page-head p{margin:0;color:var(--muted);font-size:12px}.head-actions{display:flex;gap:9px}.btn{border:1px solid #cfded9;background:#fff;color:var(--ink);padding:9px 13px;border-radius:10px;font-size:12px}.btn:hover{border-color:#8fb7ad}.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:700}.btn.warn{background:#fff8e9;border-color:#edd79d;color:#865c0c}.btn.danger{background:#fff2f0;border-color:#ecc6c0;color:var(--red)}.btn.sm{padding:7px 10px;font-size:11px}
+    .grid{display:grid;gap:14px}.cols-4{grid-template-columns:repeat(4,1fr)}.cols-3{grid-template-columns:repeat(3,1fr)}.cols-2{grid-template-columns:1.25fr .75fr}.cols-even{grid-template-columns:repeat(2,1fr)}.section{margin-top:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:19px;min-width:0}.card.flat{box-shadow:none}.metric{position:relative;overflow:hidden}.metric:before{content:"";position:absolute;left:0;top:20px;width:3px;height:36px;background:var(--accent,var(--teal));border-radius:0 4px 4px 0}.metric-label{font-size:11px;color:var(--muted)}.metric-value{font-size:28px;font-weight:800;margin:10px 0 5px;font-variant-numeric:tabular-nums}.metric-foot{font-size:10px;color:var(--green)}.metric-foot.risk{color:var(--red)}
+    .card-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:16px}.card-title{font-size:14px;font-weight:800}.card-sub{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5}.link-btn{border:0;background:none;color:var(--teal);font-size:11px;padding:0}.pill{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:5px 8px;background:#edf4f1;color:#547069;font-size:10px;white-space:nowrap}.pill.good{background:#e9f4ec;color:var(--green)}.pill.warn{background:#fff4de;color:#9a6815}.pill.risk{background:#fff0ee;color:var(--red)}.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+    .ai-chain{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.chain-step{position:relative;border:1px solid var(--line);background:#f8faf7;border-radius:13px;padding:13px 10px;min-height:92px}.chain-step:not(:last-child):after{content:"›";position:absolute;right:-8px;top:35px;width:16px;height:20px;border-radius:10px;background:#fff;color:#8aa19c;text-align:center;z-index:2}.chain-no{font-size:9px;color:var(--teal);font-weight:800}.chain-step b{display:block;font-size:11px;margin:7px 0 4px}.chain-step small{font-size:9px;color:var(--muted);line-height:1.45;display:block}.chain-step.ai{background:#edf6f1;border-color:#bfdcd1}.chain-step.human{background:#fff8e9;border-color:#ecdba9}
+    .priority{border-left:4px solid var(--red);background:linear-gradient(100deg,#fff6f4,#fff 62%)}.priority-top{display:flex;align-items:center;gap:9px}.priority h3{margin:0;font-size:14px}.priority p{margin:8px 0 14px;color:#5e7477;font-size:11px;line-height:1.7}.evidence{display:flex;gap:8px;flex-wrap:wrap}.evidence span{font-size:9px;background:#f4f7f4;border:1px solid #dde6e2;padding:6px 8px;border-radius:8px;color:#667b7e}
+    .case-list{display:grid;gap:9px}.case{display:grid;grid-template-columns:42px 1fr auto;gap:11px;align-items:center;border:1px solid #e1e9e5;border-radius:13px;padding:11px;background:#fcfdfb;cursor:pointer}.case:hover{border-color:#9bc3b7;transform:translateY(-1px)}.case-icon{width:38px;height:38px;border-radius:11px;background:#e6f1ed;display:grid;place-items:center;color:var(--teal);font-weight:800}.case b{font-size:11px}.case p{margin:5px 0 0;color:var(--muted);font-size:9px}.case-meta{text-align:right}.case-meta strong{font-size:11px;color:var(--teal)}.case-meta small{display:block;color:var(--muted);font-size:9px;margin-top:5px}
+    .map{min-height:318px;position:relative;border-radius:15px;overflow:hidden;background:linear-gradient(145deg,#dcece4,#c8ddd5)}.map:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.38) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.38) 1px,transparent 1px);background-size:34px 34px}.river{position:absolute;width:125%;height:70px;left:-12%;top:48%;background:#b5d4d6;transform:rotate(-8deg);border:10px solid rgba(255,255,255,.35)}.district{position:absolute;border:1px solid rgba(33,92,80,.32);background:rgba(255,255,255,.28);border-radius:45% 30% 40% 28%;display:grid;place-items:center;font-size:10px;color:#345f59}.d1{left:11%;top:13%;width:29%;height:31%}.d2{right:12%;top:12%;width:34%;height:34%}.d3{left:14%;bottom:10%;width:32%;height:32%}.d4{right:10%;bottom:8%;width:38%;height:35%}.map-pin{position:absolute;width:13px;height:13px;border:3px solid #fff;border-radius:50%;background:var(--teal);box-shadow:0 3px 12px rgba(29,74,68,.35)}.map-pin.hot{background:var(--red);box-shadow:0 0 0 7px rgba(198,83,72,.14)}.map-note{position:absolute;left:14px;bottom:13px;background:rgba(255,255,255,.9);border-radius:10px;padding:8px 10px;font-size:9px;color:#4c6865}
+    .rec-list{display:grid;gap:11px}.recommend{border:1px solid var(--line);border-radius:13px;padding:13px}.recommend-top{display:flex;justify-content:space-between;gap:10px}.recommend b{font-size:11px}.recommend p{font-size:9px;color:var(--muted);line-height:1.6;margin:7px 0 10px}.impact{display:flex;gap:7px}.impact span{font-size:9px;color:var(--green);background:#edf6ef;border-radius:7px;padding:5px 7px}
+    .quality-grid{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center}.score-ring{width:104px;height:104px;border-radius:50%;background:conic-gradient(var(--teal) 0 91.6%,#e3ece8 91.6%);display:grid;place-items:center;position:relative}.score-ring:after{content:"";position:absolute;inset:11px;border-radius:50%;background:#fff}.score-ring div{z-index:1;text-align:center}.score-ring strong{font-size:25px;display:block}.score-ring small{font-size:8px;color:var(--muted)}.quality-bars{display:grid;gap:10px}.q-row{display:grid;grid-template-columns:74px 1fr 28px;gap:8px;align-items:center;font-size:9px}.track{height:7px;background:#e7eeeb;border-radius:5px;overflow:hidden}.track i{display:block;height:100%;background:var(--teal);border-radius:5px}.q-row b{text-align:right;font-size:10px}
+    .audit{display:grid;gap:0}.audit-item{display:grid;grid-template-columns:54px 13px 1fr;gap:8px;min-height:52px}.audit-time{font-size:9px;color:var(--muted)}.audit-line{position:relative}.audit-line:before{content:"";position:absolute;left:2px;top:2px;width:7px;height:7px;background:var(--teal);border-radius:50%}.audit-line:after{content:"";position:absolute;left:5px;top:12px;bottom:0;width:1px;background:#d6e3de}.audit-item:last-child .audit-line:after{display:none}.audit-item b{font-size:10px}.audit-item p{font-size:9px;color:var(--muted);margin:4px 0 0;line-height:1.5}
+    .citizen-shell .side{background:#fffdf8}.citizen-shell .nav-btn:hover,.citizen-shell .nav-btn.active{background:#eef4df;color:#496e31}.citizen-shell .side-context small,.citizen-shell .kicker{color:#668540}.citizen-hero{padding:25px;background:linear-gradient(115deg,#174e4b,#246d62 58%,#6d9160);color:#fff;position:relative;overflow:hidden}.citizen-hero:after{content:"共治";position:absolute;right:28px;top:-20px;font-size:118px;font-weight:900;color:rgba(255,255,255,.055);letter-spacing:-18px}.citizen-hero h2{font-size:24px;margin:7px 0 10px}.citizen-hero p{font-size:11px;color:#d1e1dc;line-height:1.7;max-width:620px}.hero-actions{display:flex;gap:9px;margin-top:18px}.hero-actions .btn{border:0}.hero-actions .btn.primary{background:#dce990;color:#244039}.hero-actions .btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}.citizen-score{position:absolute;right:31px;bottom:27px;text-align:right}.citizen-score strong{display:block;font-size:30px}.citizen-score small{font-size:10px;color:#d7e5df}
+    .service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.service{border:1px solid var(--line);border-radius:14px;padding:15px;background:#fff;cursor:pointer}.service:hover{border-color:#afc88a;background:#fbfdf5}.service-icon{width:34px;height:34px;border-radius:11px;background:#eff4e6;color:#58763e;display:grid;place-items:center;font-size:17px}.service b{display:block;font-size:11px;margin:10px 0 4px}.service small{display:block;color:var(--muted);font-size:9px;line-height:1.4}
+    .report-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.form-grid{display:grid;gap:13px}.field label{display:block;font-size:10px;font-weight:700;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;border:1px solid #d7e3de;background:#fbfdfb;border-radius:11px;padding:11px 12px;color:var(--ink);outline:none;font-size:11px}.field textarea{height:82px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:#78aa99;box-shadow:0 0 0 3px rgba(13,118,110,.08)}.upload-zone{border:1px dashed #a8c5ba;background:#f4f8f4;border-radius:13px;padding:16px;text-align:center;color:#5f7772;font-size:10px}.upload-zone b{display:block;color:var(--teal);font-size:12px;margin-bottom:5px}.form-actions{display:flex;justify-content:flex-end;gap:8px}
+    .ai-reader{background:#173e47;color:#fff;border-color:#173e47;box-shadow:0 18px 35px rgba(22,61,69,.16)}.ai-reader .card-sub{color:#adc7c8}.scan-state{padding:28px 8px;text-align:center;color:#bad0cf;font-size:11px}.scan-orb{width:70px;height:70px;border-radius:50%;margin:0 auto 16px;background:radial-gradient(circle,#b9de91 0 8%,#3a8075 9% 28%,#255a5d 29% 58%,#1c4950 59%);box-shadow:0 0 0 8px rgba(160,206,145,.08)}.ai-result{display:grid;gap:9px}.result-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #365a60;padding-bottom:8px;font-size:10px}.result-row span{color:#aac2c2}.result-row b{text-align:right}.result-note{background:#214d53;border-radius:10px;padding:11px;font-size:9px;color:#c9ddda;line-height:1.65}.confirm{color:#dbe992;font-weight:700}
+    .journey{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}.journey-step{border:1px solid var(--line);border-radius:12px;padding:12px 10px;background:#fafcf9;position:relative}.journey-step.done{background:#edf5ea;border-color:#c7ddba}.journey-step.current{background:#fff5de;border-color:#e9d193}.journey-step b{font-size:10px;display:block}.journey-step small{display:block;color:var(--muted);font-size:8px;margin-top:5px;line-height:1.4}.journey-step:not(:last-child):after{content:"›";position:absolute;right:-7px;top:28px;color:#8fa09c;z-index:2}
+    .reward-card{background:linear-gradient(145deg,#fff,#fbf5df)}.points{font-size:31px;font-weight:900;color:#7a6a23;margin:12px 0}.reward-items{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.reward{border:1px solid #eadfb7;background:#fffdf6;border-radius:11px;padding:10px;text-align:center}.reward b{font-size:10px;display:block}.reward small{font-size:8px;color:#887a54;display:block;margin:5px 0 8px}
+    .drawer-backdrop{position:fixed;inset:0;background:rgba(12,37,41,.38);z-index:40;opacity:0;pointer-events:none;transition:.2s}.drawer-backdrop.open{opacity:1;pointer-events:auto}.drawer{position:absolute;right:0;top:0;height:100%;width:min(540px,96vw);background:#f6f8f5;padding:24px;overflow:auto;transform:translateX(100%);transition:.25s}.drawer-backdrop.open .drawer{transform:none}.drawer-head{display:flex;justify-content:space-between;align-items:center}.drawer-head h2{font-size:19px;margin:0}.close{border:0;background:#e6eeea;border-radius:10px;width:34px;height:34px}.detail-block{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px}.detail-block h3{font-size:12px;margin:0 0 12px}.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.detail-grid div{font-size:9px;color:var(--muted)}.detail-grid b{display:block;color:var(--ink);font-size:11px;margin-top:4px}.reasoning{border-left:3px solid var(--teal);padding-left:11px;font-size:10px;line-height:1.7;color:#526b6c}.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:#173e47;color:#fff;padding:11px 16px;border-radius:10px;font-size:11px;opacity:0;pointer-events:none;transition:.2s;z-index:60}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:1180px){.cols-4{grid-template-columns:repeat(2,1fr)}.cols-2,.report-layout{grid-template-columns:1fr}.ai-chain{grid-template-columns:repeat(4,1fr)}.journey{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:760px){.global-bar{height:auto;min-height:68px;padding:12px 14px;flex-wrap:wrap}.system-name,.clock{display:none}.role-switch{margin-left:auto}.shell{display:block}.side{height:auto;position:sticky;top:67px;z-index:20;padding:9px 10px;display:block;overflow:auto}.side-context,.side-foot{display:none}.side nav{display:flex;width:max-content}.nav-btn{white-space:nowrap;padding:9px 11px}.content{padding:20px 13px 40px}.page-head{display:block}.head-actions{margin-top:13px}.cols-4,.cols-3,.cols-even{grid-template-columns:1fr}.service-grid{grid-template-columns:repeat(2,1fr)}.ai-chain,.journey{grid-template-columns:repeat(2,1fr)}.citizen-score{position:static;text-align:left;margin-top:18px}.reward-items{grid-template-columns:1fr}.clock{display:none}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="global-bar">
+    <div class="brand"><div class="brand-mark">城</div><div><strong>城讯通</strong><small>CITY CO-GOVERNANCE</small></div></div>
+    <div class="system-name">城市共治智能中枢</div>
+    <div class="role-switch" aria-label="切换演示角色"><button data-role-switch="citizen">市民端</button><button class="active" data-role-switch="admin">管理端</button></div>
+    <div class="clock" id="clock">2026.08.19 09:30:18</div>
+  </header>
+
+  <div class="shell admin-shell" data-role="admin">
+    <aside class="side">
+      <div class="side-context"><small>当前角色 · 决策管理</small><b>城市治理指挥中心</b></div>
+      <nav>
+        <button class="nav-btn active" data-scroll="admin-overview"><span>⌂</span>指挥总览</button>
+        <button class="nav-btn" data-scroll="admin-cases"><span>◎</span>AI 事件中心</button>
+        <button class="nav-btn" data-scroll="admin-dispatch"><span>⇄</span>协同派单</button>
+        <button class="nav-btn" data-scroll="admin-quality"><span>◈</span>质量评价</button>
+        <button class="nav-btn" data-scroll="admin-decision"><span>✦</span>治理决策</button>
+        <button class="nav-btn" data-action="show-toast" data-message="市民激励管理：活动配置、积分审核与奖励预算"><span>♧</span>市民激励</button>
+        <button class="nav-btn" data-action="show-toast" data-message="进入模型审计：规则版本、偏差监测和人工纠错记录"><span>☷</span>AI 模型审计</button>
+      </nav>
+      <div class="side-foot"><div class="avatar">林</div><div><b>林予安</b><small>市级管理员 · 在线</small></div></div>
+    </aside>
+    <main class="content">
+      <section id="admin-overview">
+        <div class="page-head"><div><div class="kicker">CITY GOVERNANCE OPERATING SYSTEM</div><h1>今天先处理什么，系统已经排好优先级</h1><p>从城市反映信息中识别风险、组织协同，并持续衡量治理质量。</p></div><div class="head-actions"><button class="btn" data-action="show-toast" data-message="日报已按领导视角生成：风险、成效、资源建议三部分">生成领导简报</button><button class="btn primary" data-scroll="admin-cases">进入事件中心</button></div></div>
+        <div class="grid cols-4">
+          <div class="card metric"><div class="metric-label">今日进入治理闭环</div><div class="metric-value">1,284</div><div class="metric-foot">AI 去重后减少 186 条重复工单</div></div>
+          <div class="card metric" style="--accent:#4a8b63"><div class="metric-label">AI 辅助完成率</div><div class="metric-value">92.8%</div><div class="metric-foot">分类、建议、派单全程留痕</div></div>
+          <div class="card metric" style="--accent:#c65348"><div class="metric-label">需领导关注</div><div class="metric-value">7</div><div class="metric-foot risk">2 项跨部门 · 1 项高安全风险</div></div>
+          <div class="card metric" style="--accent:#e5a836"><div class="metric-label">城市文明质量指数</div><div class="metric-value">91.6</div><div class="metric-foot">较上月 +2.4 · 参与度仍需改善</div></div>
+        </div>
+      </section>
+
+      <section class="section card" id="admin-dispatch">
+        <div class="card-head"><div><div class="card-title">AI 深度参与的治理闭环</div><div class="card-sub">绿色为 AI 处理，黄色为必须保留的人工责任节点；每一步均可追溯和纠错</div></div><span class="pill good"><i class="dot"></i>模型运行正常</span></div>
+        <div class="ai-chain">
+          <div class="chain-step"><span class="chain-no">01 多源感知</span><b>汇聚反映</b><small>市民图文音视频、12345、物联设备与巡检</small></div>
+          <div class="chain-step ai"><span class="chain-no">02 AI</span><b>识别与去重</b><small>事件类型、位置、主体、重复性与隐私脱敏</small></div>
+          <div class="chain-step ai"><span class="chain-no">03 AI</span><b>风险研判</b><small>紧急度、影响范围、舆情扩散与次生风险</small></div>
+          <div class="chain-step human"><span class="chain-no">04 人机协同</span><b>确认与派单</b><small>AI 推荐责任部门，调度员确认 SLA 与协同关系</small></div>
+          <div class="chain-step"><span class="chain-no">05 部门</span><b>现场处置</b><small>接单、到场、反馈、补充证据与申请结案</small></div>
+          <div class="chain-step ai"><span class="chain-no">06 AI</span><b>质量核验</b><small>前后图像比对、文本一致性与复发风险判断</small></div>
+          <div class="chain-step human"><span class="chain-no">07 市民/管理</span><b>评价与学习</b><small>市民评价、积分奖励、部门绩效与策略优化</small></div>
+        </div>
+      </section>
+
+      <section class="section grid cols-2" id="admin-cases">
+        <div class="card">
+          <div class="card-head"><div><div class="card-title">AI 事件研判队列</div><div class="card-sub">按“公共安全影响 × 扩散速度 × 超时风险”排序，不再按上报时间简单堆叠</div></div><button class="link-btn" data-action="show-toast" data-message="已切换到全部事件队列">全部 1,284 条 →</button></div>
+          <div class="priority"><div class="priority-top"><span class="pill risk">一级关注</span><h3>滨江路外墙构件松动，存在坠落风险</h3></div><p>AI 关联了 3 条市民反映、1 个巡检视频和未来 2 小时大风预警，建议立即设置隔离区并联动住建、街道。</p><div class="evidence"><span>视觉识别 97%</span><span>空间聚类 4 个来源</span><span>天气风险 +32%</span><span>预计影响 860 人次</span></div><div class="head-actions" style="margin-top:13px"><button class="btn sm" data-case="urgent">查看研判依据</button><button class="btn primary sm" data-action="dispatch">确认联合派单</button></div></div>
+          <div class="case-list" style="margin-top:12px">
+            <div class="case" data-case="light"><div class="case-icon">灯</div><div><b>文一路连续 4 盏路灯故障</b><p>聚合 12 条反映 · 夜间出行风险上升 · 建议整段排查</p></div><div class="case-meta"><strong>93%</strong><small>派单建议可信度</small></div></div>
+            <div class="case" data-case="waste"><div class="case-icon">净</div><div><b>中央公园北门垃圾清运延迟</b><p>相似事件近 7 日复发 3 次 · AI 建议调整清运班次</p></div><div class="case-meta"><strong>89%</strong><small>复发风险较高</small></div></div>
+            <div class="case" data-case="road"><div class="case-icon">路</div><div><b>学院路井盖松动并伴随积水</b><p>可能涉及排水与道路两部门 · 建议主协办派单</p></div><div class="case-meta"><strong>86%</strong><small>跨部门事件</small></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div><div class="card-title">全域风险与资源态势</div><div class="card-sub">地图不只是点位展示，同时呈现聚类、复发和处置资源缺口</div></div><span class="pill warn">4 个热点</span></div>
+          <div class="map"><div class="river"></div><div class="district d1">江岸片区</div><div class="district d2">晨光片区</div><div class="district d3">华阳片区</div><div class="district d4">滨江片区</div><i class="map-pin hot" style="left:68%;top:29%"></i><i class="map-pin" style="left:29%;top:35%"></i><i class="map-pin hot" style="left:52%;top:69%"></i><i class="map-pin" style="left:78%;top:71%"></i><div class="map-note">AI 预测：18:00—21:00 滨江片区照明类诉求可能增加 22%</div></div>
+        </div>
+      </section>
+
+      <section class="section grid cols-even" id="admin-decision">
+        <div class="card">
+          <div class="card-head"><div><div class="card-title">给城管领导的优化建议</div><div class="card-sub">每条建议均附数据依据、预期收益与责任边界，支持采纳、试点或退回</div></div><button class="link-btn" data-action="show-toast" data-message="已打开本月 18 条决策建议档案">建议档案 →</button></div>
+          <div class="rec-list">
+            <div class="recommend"><div class="recommend-top"><b>调整滨江片区夜间巡检路线与班次</b><span class="pill risk">优先级高</span></div><p>近 14 日照明、占道类反映在 19:00 后集中增长；现有巡检路线与高发网格重合率仅 41%。</p><div class="impact"><span>预计投诉 -18%</span><span>响应时间 -12 分钟</span><span>无需新增编制</span></div></div>
+            <div class="recommend"><div class="recommend-top"><b>建立“垃圾满溢—清运车”动态匹配试点</b><span class="pill warn">建议试点</span></div><p>AI 发现 7 个点位重复发生，固定班次与周末客流峰值错位，可先在中央公园周边试行 30 天。</p><div class="impact"><span>复发率 -26%</span><span>车辆空驶 -9%</span><span>试点成本 3.2 万</span></div></div>
+          </div>
+        </div>
+        <div class="card" id="admin-quality">
+          <div class="card-head"><div><div class="card-title">文明建设质量评价</div><div class="card-sub">从“办了多少”转向“是否改善、是否复发、市民是否认可”</div></div><span class="pill good">质量良好</span></div>
+          <div class="quality-grid"><div class="score-ring"><div><strong>91.6</strong><small>综合质量指数</small></div></div><div class="quality-bars"><div class="q-row"><span>环境整洁</span><div class="track"><i style="width:94%"></i></div><b>94</b></div><div class="q-row"><span>设施完好</span><div class="track"><i style="width:89%"></i></div><b>89</b></div><div class="q-row"><span>公共秩序</span><div class="track"><i style="width:92%"></i></div><b>92</b></div><div class="q-row"><span>市民参与</span><div class="track"><i style="width:78%;background:#e5a836"></i></div><b>78</b></div><div class="q-row"><span>处置满意</span><div class="track"><i style="width:96%"></i></div><b>96</b></div></div></div>
+          <div class="result-note" style="margin-top:16px;background:#f3f7f4;color:#58706d">AI 评价说明：本月总体改善，但“市民参与”低于目标。建议将积分从单次上报扩展到现场复核、志愿服务与治理建议采纳。</div>
+        </div>
+      </section>
+
+      <section class="section card flat">
+        <div class="card-head"><div><div class="card-title">AI 决策与人工责任审计</div><div class="card-sub">系统保留模型版本、输入依据、人工修改和最终结果，用于复盘而不是“甩锅给算法”</div></div><button class="btn sm" data-action="show-toast" data-message="审计报告已生成，包含 42 次人工改派和 7 次模型纠错">导出审计报告</button></div>
+        <div class="audit"><div class="audit-item"><span class="audit-time">09:26</span><span class="audit-line"></span><div><b>AI 建议联合派单：住建局主办、滨江街道协办</b><p>依据：外墙构件识别、4 个空间聚合来源、大风预警；调度员尚未确认。</p></div></div><div class="audit-item"><span class="audit-time">09:18</span><span class="audit-line"></span><div><b>调度员将 #CT-08231 从环卫部门改派至园林绿化</b><p>人工理由：现场图片主体为绿化废弃物；该结果将进入下轮模型纠错样本。</p></div></div><div class="audit-item"><span class="audit-time">09:05</span><span class="audit-line"></span><div><b>AI 质量复核通过 #CT-08216</b><p>前后图像相似度验证、坐标一致、结果描述完整；市民已收到评价邀请。</p></div></div></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="shell citizen-shell hidden" data-role="citizen">
+    <aside class="side">
+      <div class="side-context"><small>当前角色 · 市民共治</small><b>你好，周明远</b></div>
+      <nav>
+        <button class="nav-btn active" data-scroll="citizen-home"><span>⌂</span>我的首页</button>
+        <button class="nav-btn" data-scroll="citizen-report"><span>＋</span>我要反映</button>
+        <button class="nav-btn" data-scroll="citizen-orders"><span>◎</span>办理进度</button>
+        <button class="nav-btn" data-scroll="citizen-points"><span>✦</span>文明积分</button>
+        <button class="nav-btn" data-action="show-toast" data-message="社区共治：附近议题、志愿任务与治理建议征集"><span>♧</span>社区共治</button>
+        <button class="nav-btn" data-action="show-toast" data-message="消息中心：工单进度、奖励到账与活动提醒"><span>◫</span>我的消息</button>
+      </nav>
+      <div class="side-foot"><div class="avatar">周</div><div><b>周明远</b><small>五星文明市民 · 5,860 分</small></div></div>
+    </aside>
+    <main class="content">
+      <section id="citizen-home" class="card citizen-hero">
+        <div class="kicker" style="color:#dce990">GOOD MORNING · 江岸社区</div><h2>你发现的问题，AI 帮你说清楚、找对人、跟到底</h2><p>拍一张照片或说一句话即可反映。AI 会识别问题并提出分类建议，由你确认后再生成工单；处理过程和奖励都清清楚楚。</p><div class="hero-actions"><button class="btn primary" data-scroll="citizen-report">＋ 立即反映问题</button><button class="btn ghost" data-scroll="citizen-orders">查看办理进度</button></div><div class="citizen-score"><small>我的文明积分</small><strong>5,860</strong><small>本月已贡献 4 次有效共治</small></div>
+      </section>
+
+      <section class="section card flat">
+        <div class="card-head"><div><div class="card-title">我能参与什么</div><div class="card-sub">从发现问题到参加志愿服务，贡献都有反馈，不把市民当“数据提供者”</div></div></div>
+        <div class="service-grid"><div class="service" data-scroll="citizen-report"><div class="service-icon">拍</div><b>随手拍问题</b><small>AI 识别图像、位置和问题类型</small></div><div class="service" data-action="show-toast" data-message="语音反映已开启：说清地点和现象，AI 将自动整理"><div class="service-icon">说</div><b>语音反映</b><small>不会打字也能说，提交前可确认</small></div><div class="service" data-action="show-toast" data-message="附近有 3 项待复核问题，可参与现场确认"><div class="service-icon">核</div><b>协助现场复核</b><small>确认问题是否解决，可获得积分</small></div><div class="service" data-action="show-toast" data-message="本周社区共治任务：文明劝导、垃圾分类、无障碍巡查"><div class="service-icon">行</div><b>参加共治行动</b><small>报名社区任务，积累文明贡献</small></div></div>
+      </section>
+
+      <section class="section" id="citizen-report">
+        <div class="page-head"><div><div class="kicker">AI ASSISTED REPORT</div><h1 style="font-size:22px">反映问题，只需告诉系统“发生了什么”</h1><p>AI 负责整理和建议，你负责确认事实；未经确认不会自动提交。</p></div></div>
+        <div class="report-layout">
+          <div class="card"><div class="card-head"><div><div class="card-title">① 提供现场信息</div><div class="card-sub">支持图片、视频、语音和文字，至少填写一种</div></div><span class="pill">隐私信息自动脱敏</span></div>
+            <form class="form-grid" id="report-form">
+              <div class="upload-zone"><b>＋ 添加现场照片 / 视频 / 语音</b><span>演示模式：已选中“路灯故障.jpg” · 1.8 MB</span></div>
+              <div class="field"><label for="description">问题描述</label><textarea id="description" placeholder="例如：文一路东侧连续几盏路灯不亮，晚上行人很多。">文一路东侧靠近地铁口，连续四盏路灯不亮，晚上行人很多，已经有两三天了。</textarea></div>
+              <div class="grid cols-even"><div class="field"><label for="location">发生地点</label><input id="location" value="文一路地铁口 B 出口东侧"></div><div class="field"><label for="contact">联系偏好</label><select id="contact"><option>仅接收站内进度</option><option>电话联系</option><option>短信联系</option></select></div></div>
+              <div class="form-actions"><button type="button" class="btn" data-action="save-draft">保存草稿</button><button type="button" class="btn primary" id="analyze-btn">交给 AI 识别 →</button></div>
+            </form>
+          </div>
+          <div class="card ai-reader"><div class="card-head"><div><div class="card-title">② AI 识别与建议</div><div class="card-sub">识别依据和不确定项会一起告诉你</div></div><span class="pill good">由市民最终确认</span></div>
+            <div class="scan-state" id="scan-empty"><div class="scan-orb"></div><b>等待分析现场信息</b><p>AI 将识别问题类型、影响程度、可能的责任部门和是否存在重复上报。</p></div>
+            <div class="ai-result hidden" id="scan-result"><div class="result-row"><span>识别问题</span><b>市政设施 · 道路照明故障</b></div><div class="result-row"><span>位置核对</span><b>文一路地铁口 B 出口东侧</b></div><div class="result-row"><span>影响判断</span><b>中等 · 夜间行人安全</b></div><div class="result-row"><span>重复检查</span><b>附近 24 小时内有 2 条相似反映</b></div><div class="result-row"><span>建议受理</span><b>市政设施部门 · 4 小时响应</b></div><div class="result-note">为什么这样判断：图片中识别到 4 个未亮灯具；文本包含“地铁口、晚上行人很多”；定位与已有两条反映相距不足 80 米。综合置信度 <span class="confirm">94%</span>。</div><label style="font-size:9px;color:#bed0cf"><input type="checkbox" id="confirm-check"> 我确认以上地点、现象和识别结果基本准确</label><button class="btn primary" type="button" id="submit-report">确认并生成工单</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card" id="citizen-orders">
+        <div class="card-head"><div><div class="card-title">我的问题正在怎样处理</div><div class="card-sub">不只显示“处理中”，而是明确 AI、调度员和责任部门分别做了什么</div></div><button class="link-btn" data-action="show-toast" data-message="已打开我的全部 12 条反映记录">全部记录 →</button></div>
+        <div class="priority" style="border-left-color:#e5a836"><div class="priority-top"><span class="pill warn">处理中</span><h3>#CT-20260819-0231 · 文一路连续路灯故障</h3></div><p>预计今天 14:30 前完成现场处理。你可以补充信息，结案后将收到 AI 初检结果和评价邀请。</p>
+          <div class="journey"><div class="journey-step done"><b>已提交</b><small>09:31<br>获得基础积分 +5</small></div><div class="journey-step done"><b>AI 已识别</b><small>09:31<br>聚合 3 条相似反映</small></div><div class="journey-step done"><b>调度已确认</b><small>09:34<br>市政设施部门</small></div><div class="journey-step current"><b>现场处理中</b><small>维修班组已接单<br>预计 14:30 完成</small></div><div class="journey-step"><b>AI 质量初检</b><small>等待处理前后图片</small></div><div class="journey-step"><b>我的评价</b><small>满意度与补充积分</small></div></div>
+        </div>
+      </section>
+
+      <section class="section grid cols-even" id="citizen-points">
+        <div class="card reward-card"><div class="card-head"><div><div class="card-title">我的文明贡献</div><div class="card-sub">积分奖励有效参与和真实改善，不鼓励重复、无效上报</div></div><span class="pill good">五星市民</span></div><div class="points">5,860 <small style="font-size:11px">分</small></div><div class="quality-bars"><div class="q-row"><span>有效反映</span><div class="track"><i style="width:82%"></i></div><b>42</b></div><div class="q-row"><span>现场复核</span><div class="track"><i style="width:54%"></i></div><b>18</b></div><div class="q-row"><span>志愿服务</span><div class="track"><i style="width:68%"></i></div><b>26h</b></div></div></div>
+        <div class="card"><div class="card-head"><div><div class="card-title">积分可以这样使用</div><div class="card-sub">奖励公共参与，也连接真实的社区公共服务</div></div><button class="link-btn" data-action="show-toast" data-message="积分商城已打开，共 28 项可兑换权益">全部权益 →</button></div><div class="reward-items"><div class="reward"><b>社区运动馆</b><small>单次预约权益</small><button class="btn sm" data-action="redeem">800 分兑换</button></div><div class="reward"><b>公共自行车</b><small>7 日骑行权益</small><button class="btn sm" data-action="redeem">500 分兑换</button></div><div class="reward"><b>公益项目捐赠</b><small>支持社区微更新</small><button class="btn sm" data-action="redeem">300 分捐赠</button></div></div></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div class="drawer-backdrop" id="drawer-backdrop"><aside class="drawer"><div class="drawer-head"><div><div class="kicker">AI EVENT DOSSIER</div><h2>事件研判档案</h2></div><button class="close" id="drawer-close">×</button></div><div class="detail-block"><h3 id="detail-title">滨江路外墙构件松动</h3><div class="detail-grid"><div>事件编号<b>#CT-20260819-0218</b></div><div>风险等级<b style="color:#c65348">一级关注</b></div><div>建议主办<b>市住建局</b></div><div>建议协办<b>滨江街道</b></div></div></div><div class="detail-block"><h3>AI 研判依据</h3><div class="reasoning">视觉模型识别到外墙金属构件异常位移；3 条市民反映与 1 段巡检视频位于同一建筑；气象预报显示未来两小时阵风增强。系统因此将普通设施问题提升为公共安全风险，并建议联合派单。</div></div><div class="detail-block"><h3>建议处置方案</h3><div class="audit"><div class="audit-item"><span class="audit-time">0—15 分</span><span class="audit-line"></span><div><b>街道设置临时隔离区</b><p>通知物业并引导行人绕行。</p></div></div><div class="audit-item"><span class="audit-time">30 分内</span><span class="audit-line"></span><div><b>住建专业人员到场鉴定</b><p>上传检查记录和风险范围。</p></div></div><div class="audit-item"><span class="audit-time">2 小时内</span><span class="audit-line"></span><div><b>完成加固或拆除并复核</b><p>AI 比对前后图像，管理员人工结案。</p></div></div></div></div><div class="head-actions"><button class="btn" id="drawer-reject">修改派单建议</button><button class="btn primary" data-action="dispatch">确认并派单</button></div></aside></div>
+<div class="toast" id="toast"></div>
+
+<script src="index-api.js"></script>
+</body>
+</html>

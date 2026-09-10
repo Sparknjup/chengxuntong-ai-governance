@@ -1,0 +1,6 @@
+{
+  "pages": ["pages/home/home", "pages/report/report", "pages/orders/orders", "pages/profile/profile", "pages/categories/categories", "pages/feed/feed", "pages/messages/messages", "pages/points/points", "pages/help/help", "pages/order-detail/order-detail", "pages/report-success/report-success", "pages/level-guide/level-guide", "pages/feedback/feedback", "pages/about/about", "pages/service-guide/service-guide"],
+  "window": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#F7F5F1", "backgroundColor": "#F7F5F1" },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

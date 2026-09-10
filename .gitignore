@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.venv/
+venv/
+env/
+
+# 环境变量（敏感信息）
+.env
+
+# IDE 与本机开发配置
+.vscode/
+.idea/
+*.swp
+*.swo
+**/project.private.config.json
+
+# 日志和上传
+logs/
+uploads/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 数据库
+*.db
+*.sqlite3
+
+# 本地文档、Codex 工作目录与发布中间产物
+.codex_*/
+.codex-video-review/
+_3s_form_work/
+docx_review/
+github_publish/
+简历输出/
+*.docx
+*.zip
+{app,app/
+bloom-landing.html
+bloom-flowers.png
+vesper-landing.html
+chengxuntong-reference.png
+
+# 宣传片生成过程较大，仅保留最终成片和抽帧预览
+promo/.deps/
+promo/clips/
+promo/frames/
+promo/keyframes/
+promo/review/
+promo/voice/
+promo/output/*
+!promo/output/城讯通-城市共治宣传片.mp4
+!promo/output/成片抽帧检查.jpg

@@ -1,0 +1,19 @@
+<view class="profile">
+  <view class="profile-hero">
+    <view class="hero-space"></view>
+    <view class="user-row"><view class="avatar">城</view><view><text>城市守护者</text><text>杭州 · 文明参与者</text></view></view>
+    <view class="score"><view><text>文明积分</text><text>186</text></view><view><text>✦ 三星文明市民</text><text>再获得 115 分即可升级</text></view></view>
+    <view class="score-line"><view></view></view>
+  </view>
+  <view class="profile-body">
+    <view class="stats card"><view data-url="/pages/orders/orders" bindtap="navigate"><text>06</text><text>累计上报</text></view><view data-url="/pages/orders/orders" bindtap="navigate"><text>04</text><text>已完成</text></view><view data-url="/pages/points/points" bindtap="navigate"><text>92%</text><text>处理满意度</text></view></view>
+    <view class="menu card">
+      <view data-url="/pages/points/points" bindtap="navigate"><text class="menu-icon orange">✦</text><view><text>我的文明积分</text><text>记录每一次参与</text></view><text>›</text></view>
+      <view data-url="/pages/messages/messages" bindtap="navigate"><text class="menu-icon blue">◌</text><view><text>消息与通知</text><text>工单进度、城市动态</text></view><text>›</text></view>
+      <view data-url="/pages/help/help" bindtap="navigate"><text class="menu-icon green">?</text><view><text>帮助与反馈</text><text>有问题，随时联系我们</text></view><text>›</text></view>
+      <view data-url="/pages/about/about" bindtap="navigate"><text class="menu-icon blue">⚙</text><view><text>关于城讯通</text><text>版本信息与服务说明</text></view><text>›</text></view>
+    </view>
+    <view class="quote"><text>“</text><view><text>城市的温度，来自每一个认真生活的人。</text><text>— 城讯通</text></view></view>
+  </view>
+</view>
+<view class="bottom-nav"><navigator class="nav" url="/pages/home/home" open-type="reLaunch"><text class="nav-icon">⌂</text><text>首页</text></navigator><navigator class="nav" url="/pages/orders/orders"><text class="nav-icon">▤</text><text>进度</text></navigator><navigator class="nav nav-report" url="/pages/report/report"><text class="nav-icon">＋</text><text>上报</text></navigator><navigator class="nav active" url="/pages/profile/profile"><text class="nav-icon">◉</text><text>我的</text></navigator></view>

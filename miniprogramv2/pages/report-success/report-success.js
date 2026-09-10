@@ -1,0 +1,1 @@
+Page({ data: { type: '市政设施' }, onLoad(options) { this.setData({ type: decodeURIComponent(options.type || '市政设施') }) }, orders() { wx.reLaunch({ url: '/pages/orders/orders' }) }, home() { wx.reLaunch({ url: '/pages/home/home' }) } })

@@ -1,0 +1,1 @@
+{ "desc": "城讯通 V2", "rules": [{ "action": "allow", "page": "*" }] }
