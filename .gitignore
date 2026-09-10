@@ -41,7 +41,6 @@ github_publish/
 简历输出/
 *.docx
 *.zip
-{app,app/
 bloom-landing.html
 bloom-flowers.png
 vesper-landing.html
